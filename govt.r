@@ -4,11 +4,11 @@ getwd()
 library(lattice)
 library(taRifx)
 library(ggplot2)
-setwd("/home/pramod/Documents/Kaggle/")
+setwd("/home/pramod/Documents/Kaggle/govt/")
+
 s.data <-read.csv("all.csv",header = T,stringsAsFactors = F)
 
-
-
+colnames(s.data)
 class(s.data$Persons)
 
 class(s.data)
@@ -20,12 +20,14 @@ s.edu <- s.data[,c(1,2,18:30,35:38)]
 
 colnames(s.edu)
 #aggregate( speed ~ dive, df, mean )
+
 #Fucntion to calculate the aggregate for 
 agg <- function(x,y){
   aggregate(x~y,s.edu,mean)
 }
 
 male <- agg(s.edu$Males..Literate,s.edu$State)
+
 colnames(male)[2] <- c("Male")
 # Male literatute rate
 male.lit <- agg(s.edu$Males..Literatacy.Rate,s.edu$State)
